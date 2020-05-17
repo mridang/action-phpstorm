@@ -1,7 +1,7 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
-c: 
+name: 'PHPStorm Inspector'
+description: 'Runs PHPStorm inspections on codebase'
+author: 'Mridang Agarwalla'
+inputs:
   target:
     required: true
     description: 'The directory to be inspected. Whole project is inspected by default.'
