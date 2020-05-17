@@ -4,13 +4,13 @@ author: 'Mridang Agarwalla'
 inputs:
   target:
     required: true
-    description: 'The directory to be inspected. Whole project is inspected by default.'
+    description: 'The directory to be inspected.'
   profile:
     required: true
     description: 'The absolute path to the profile file.'
   output:
     required: true
-    description: 'The absolute path to spew outputs to'
+    description: 'The absolute path to spew outputs to.'
   verbosity:
     required: false
     description: 'The verbose level. v0 - silent, v1 - verbose, v2 - most verbose.'

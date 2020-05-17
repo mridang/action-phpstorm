@@ -1,5 +1,33 @@
-# Container Action Template
+# PHPStorm Inspector
 
-To get started, click the `Use this template` button on this repository [which will create a new repository based on this template](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/).
+This action runs PHPStorm inspections on your codebase.
 
-For info on how to build your first Container action, see the [toolkit docs folder](https://github.com/actions/toolkit/blob/master/docs/container-action.md).
+## Parameters
+| Parameter               | Type     | Default | Description                                                       |
+|-------------------------|----------|---------|-------------------------------------------------------------------|
+| `target`                | `string` |         | The directory to be inspected.                                    |
+| `profile`               | `string` |         | The absolute path to the profile file.                            |
+| `output`                | `string` |         | The absolute path to spew outputs to                              |
+| `verbosity`             | `string` | v2      | The verbose level. v0 - silent, v1 - verbose, v2 - most verbose.  |
+
+## Usage
+```yaml
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run IntelliJ
+      uses: mridang/action-phpstorm@master
+      with:
+        target: .
+        profile: ./.idea/inspectionProfiles/Project_Default.xml
+        output: ./output
+        verbosity: v2
+```
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2020 Mridang Agarwalla
