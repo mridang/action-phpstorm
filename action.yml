@@ -20,3 +20,6 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.target }}
+    - ${{ inputs.profile }}
+    - ${{ inputs.output }}
+    - ${{ inputs.verbosity }}
