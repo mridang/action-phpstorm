@@ -3,12 +3,13 @@
 This action runs PHPStorm inspections on your codebase.
 
 ## Parameters
-| Parameter               | Type     | Default | Description                                                       |
-|-------------------------|----------|---------|-------------------------------------------------------------------|
-| `target`                | `string` |         | The directory to be inspected.                                    |
-| `profile`               | `string` |         | The absolute path to the profile file.                            |
-| `output`                | `string` |         | The absolute path to spew outputs to                              |
-| `verbosity`             | `string` | v2      | The verbose level. v0 - silent, v1 - verbose, v2 - most verbose.  |
+| Parameter               | Type     | Default | Description                                                         |
+|-------------------------|----------|---------|---------------------------------------------------------------------|
+| `target`                | `string` |         | The directory to be inspected.                                      |
+| `profile`               | `string` |         | The absolute path to the profile file.                              |
+| `output`                | `string` |         | The absolute path to spew outputs to                                |
+| `verbosity`             | `string` | v2      | The verbose level. v0 - silent, v1 - verbose, v2 - most verbose.    |
+| `scope`                 | `string` | default | The inspection scope to be used. If none, all files are inspected.  |
 
 ## Usage
 ```yaml
@@ -24,6 +25,7 @@ jobs:
         profile: ./.idea/inspectionProfiles/Project_Default.xml
         output: ./output
         verbosity: v2
+        scope: sources
 ```
 
 ## License

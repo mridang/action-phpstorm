@@ -15,6 +15,10 @@ inputs:
     required: false
     description: 'The verbose level. v0 - silent, v1 - verbose, v2 - most verbose.'
     default: 'v2'
+  scope:
+    required: false
+    description: 'The inspection scope to be used. If none, all files are inspected.'
+    default: 'default'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -23,3 +27,4 @@ runs:
     - ${{ inputs.profile }}
     - ${{ inputs.output }}
     - ${{ inputs.verbosity }}
+    - ${{ inputs.scope }}
