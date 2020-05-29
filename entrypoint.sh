@@ -8,5 +8,7 @@ if [ "$5" != "default" ]; then
   echo "-Didea.analyze.scope=$5" >> /opt/ide/bin/phpstorm64.vmoptions
 fi
 
+cat /problems.xslt
+
 /opt/ide/bin/inspect.sh $1 $2 $3 -d $1 -$4
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /problems.xslt
