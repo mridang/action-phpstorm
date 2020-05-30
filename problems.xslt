@@ -1,10 +1,10 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:str="http://exslt.org/strings">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="text" encoding="iso-8859-1"/>
   <!-- https://stackoverflow.com/a/5738296/304151 -->
-  <xsl:template match="*/text()[normalize-space()]">
+  <xsl:template match="*/text()[string-length(normalize-space()) > 0]">
       <xsl:value-of select="normalize-space()"/>
   </xsl:template>
-  <xsl:template match="*/text()[not(normalize-space())]" />
+  <xsl:template match="*/text()[not(string-length(normalize-space()) > 0)]" />
   <xsl:template match="problem">
     <xsl:text>::</xsl:text>
     <xsl:text>warning </xsl:text>

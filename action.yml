@@ -21,7 +21,7 @@ inputs:
     default: 'default'
   noinspect :
     required: false
-    description: 'A command delimted list of inspection output files to be skipped.'
+    description: 'A command delimited list of inspection output files to be skipped.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
