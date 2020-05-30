@@ -38,24 +38,31 @@ echo "Cleaning path references"
 # ignore and we simply explode and remove those
 echo "$6" | awk 'BEGIN{RS=","} {print}' | xargs -I{} rm -f "$3/{}"
 
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 xsltproc /files.xslt | sort | uniq
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /files.xslt | sort | uniq
 
 # Now we'll remove the $PROJECT_DIR$ references
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 sed -i 's|$PROJECT_DIR$||g'
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i 's|$PROJECT_DIR$||g'
 
 # Now we'll remove the file:// references
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 sed -i 's|file://||g'
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i 's|file://||g'
 
 # Remove all the references to GITHUB_WORKSPACE in all the XML files. The
 # inspection results have file paths in the format.
 # file://$PROJECT_DIR$/$GITHUB_WORKSPACE or file://$GITHUB_WORKSPACE
 # Notice that $GITHUB_WORKSPACE is a variable, while $PROJECT_DIR$ is not
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 sed -i "s|$GITHUB_WORKSPACE||g"
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s|$GITHUB_WORKSPACE||g"
 
 echo "Sanity check file paths"
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 xsltproc /files.xslt | sort | uniq
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 xsltproc /files.xslt | sort | uniq | xargs -I{} test -e {}
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /files.xslt | sort | uniq
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /files.xslt | sort | uniq | xargs -I{} test -e {}
 
 echo "Parsing problems and reporting annotations"
 # Now to iterate all the XML files, transform them and then print them.
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs -0 xsltproc /problems.xslt
+# shellcheck disable=SC2038
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /problems.xslt
