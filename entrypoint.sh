@@ -13,6 +13,7 @@ echo $6 | awk 'BEGIN{RS=","} {print}' | xargs -I{} rm -f "$3/{}"
 # Remove all the references to GITHUB_WORKSPACE in all the XML files. The
 # insection results have file paths in the format.
 # file://$PROJECT_DIR$/$GITHUB_WORKSPACE
+cat output/PhpUndefinedFieldInspection.xml
 # Notice that $GITHUB_WORKSPACE is a variable, while $PROJECT_DIR$ is not
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s/$GITHUB_WORKSPACE//g"
 # Now we'll remove the file://$PROJECT_DIR$ references
