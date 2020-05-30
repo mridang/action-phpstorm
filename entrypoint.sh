@@ -1,5 +1,10 @@
 #!/bin/sh -l
 
+if [ ! -f ".idea" ] ; then
+  echo "Couldn't find the .idea folder. Have you version handled it?"
+  exit
+fi
+
 # There's no clean way to specify the scope and therefore we must use this
 # nasty workaround.
 # https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132670
