@@ -54,7 +54,7 @@ find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i 's|file://||g
 # file://$PROJECT_DIR$/$GITHUB_WORKSPACE or file://$GITHUB_WORKSPACE
 # Notice that $GITHUB_WORKSPACE is a variable, while $PROJECT_DIR$ is not
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s|$GITHUB_WORKSPACE||g"
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s|$GITHUB_WORKSPACE/||g"
 
 echo "Sanity check file paths"
 # shellcheck disable=SC2038
