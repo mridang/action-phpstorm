@@ -9,5 +9,7 @@ if [ "$5" != "default" ]; then
 fi
 
 /opt/ide/bin/inspect.sh $1 $2 $3 -d $1 -$4
+echo $6 | awk 'BEGIN{RS=","} {print}' | xargs -I{} rm -f "$3/{}"
+ls -lah $3
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s/file:\/\/\\\$PROJECT_DIR\\\$//g"
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /problems.xslt
