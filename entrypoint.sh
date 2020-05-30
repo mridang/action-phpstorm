@@ -17,5 +17,6 @@ echo $6 | awk 'BEGIN{RS=","} {print}' | xargs -I{} rm -f "$3/{}"
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s/$GITHUB_WORKSPACE//g"
 # Now we'll remove the file://$PROJECT_DIR$ references
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i 's/file:\\$PROJECT_DIR$//g'
+cat output/PhpUndefinedFieldInspection.xml
 # Now to iterate all the XML files, transform them and then print them.
 find $3 -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /problems.xslt
