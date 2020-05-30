@@ -19,6 +19,9 @@ inputs:
     required: false
     description: 'The inspection scope to be used. If none, all files are inspected.'
     default: 'default'
+  noinspect :
+    required: false
+    description: 'A command delimted list of inspection output files to be skipped.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -28,3 +31,4 @@ runs:
     - ${{ inputs.output }}
     - ${{ inputs.verbosity }}
     - ${{ inputs.scope }}
+    - ${{ inputs.noinspect }}
