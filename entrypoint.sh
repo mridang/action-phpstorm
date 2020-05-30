@@ -4,13 +4,13 @@
 # nasty workaround.
 # https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132670
 if [ "$5" != "default" ]; then
-  if [[ ! -f /opt/ide/bin/phpstorm.vmoptions ]] ; then
+  if [ ! -f /opt/ide/bin/phpstorm.vmoptions ] ; then
     echo "Cannot file /opt/ide/bin/phpstorm.vmoptions options file"
     exit
   fi
   echo "-Didea.analyze.scope=$5" >> /opt/ide/bin/phpstorm.vmoptions
 
-  if [[ ! -f /opt/ide/bin/phpstorm64.vmoptions ]] ; then
+  if [ ! -f /opt/ide/bin/phpstorm64.vmoptions ] ; then
     echo "Cannot file /opt/ide/bin/phpstorm64.vmoptions options file"
     exit
   fi
@@ -21,7 +21,7 @@ fi
 # work with so be cautious when editing the order of the parameters.
 echo "Running inspections"
 /opt/ide/bin/inspect.sh "$1" "$2" "$3" -d "$1" "-$4"
-if [[ ! -f "$3/.descriptions.xml" ]] ; then
+if [ ! -f "$3/.descriptions.xml" ] ; then
   echo "No XML files generated in the output dir. Something is wrong."
   exit
 fi
