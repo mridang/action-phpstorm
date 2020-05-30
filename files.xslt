@@ -6,14 +6,7 @@
   </xsl:template>
   <xsl:template match="*/text()[not(normalize-space())]" />
   <xsl:template match="problem">
-    <xsl:text>::</xsl:text>
-    <xsl:text>warning </xsl:text>
-    <xsl:text>file=</xsl:text>
     <xsl:value-of select="file"/>
-    <xsl:text>,line=</xsl:text>
-    <xsl:value-of select="line"/>
-    <xsl:text>::</xsl:text>
-    <xsl:value-of select="description" disable-output-escaping="yes"/>
     <!-- https://stackoverflow.com/a/25690036/304151 -->
     <xsl:if test="position () &lt; last()">
       <xsl:text>&#xA;</xsl:text>
