@@ -1,10 +1,10 @@
 #!/bin/sh -l
 
 echo "$GITHUB_WORKSPACE/.idea"
-if [ ! -d "$GITHUB_WORKSPACE/.idea" ] ; then
-  echo "Couldn't find the .idea folder. Have you version handled it?"
-  exit
-fi
+# if [ ! -d "$GITHUB_WORKSPACE/.idea" ] ; then
+#  echo "Couldn't find the .idea folder. Have you version handled it?"
+#  exit
+# fi
 
 # There's no clean way to specify the scope and therefore we must use this
 # nasty workaround.
