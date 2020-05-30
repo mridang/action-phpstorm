@@ -1,8 +1,6 @@
 #!/bin/sh -l
 
-pwd
-ls -lah "$GITHUB_WORKSPACE"
-if [ ! -f "$GITHUB_WORKSPACE/.idea" ] ; then
+if [ ! -d "$GITHUB_WORKSPACE/.idea" ] ; then
   echo "Couldn't find the .idea folder. Have you version handled it?"
   exit
 fi
