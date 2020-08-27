@@ -16,6 +16,7 @@ if [ "$5" != "default" ]; then
   fi
   echo "-Didea.analyze.scope=$5" >> /opt/ide/bin/phpstorm.vmoptions
   export STUDIO_VM_OPTIONS=/opt/ide/bin/phpstorm.vmoptions
+  export PHPSTORM_VM_OPTIONS=/opt/ide/bin/phpstorm.vmoptions
 
   if [ ! -f /opt/ide/bin/phpstorm64.vmoptions ] ; then
     echo "Cannot file /opt/ide/bin/phpstorm64.vmoptions options file"
@@ -23,6 +24,7 @@ if [ "$5" != "default" ]; then
   fi
   echo "-Didea.analyze.scope=$5" >> /opt/ide/bin/phpstorm64.vmoptions
   export STUDIO_VM_OPTIONS=/opt/ide/bin/phpstorm64.vmoptions
+  export PHPSTORM_VM_OPTIONS=/opt/ide/bin/phpstorm.vmoptions
 fi
 
 # Run the inspection with the parameters provided. This script is a real pain to
