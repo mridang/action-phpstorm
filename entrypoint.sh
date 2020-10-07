@@ -65,11 +65,16 @@ find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty se
 
 echo "Sanity check file paths"
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /files.xslt | sort | uniq
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty xsltproc /files.xslt | sort | uniq
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /files.xslt | sort | uniq | xargs -I{} test -e {}
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty xsltproc /files.xslt | sort | uniq | xargs -I{} test -e {}
 
 echo "Parsing problems and reporting annotations"
 # Now to iterate all the XML files, transform them and then print them.
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /problems.xslt
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty xsltproc /problems.xslt
+
+errs=$(find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty xsltproc /files.xslt | wc -l)
+if [ "$errs" -gt 0 ] ; then
+   exit 9
+fi
