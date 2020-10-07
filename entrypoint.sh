@@ -6,6 +6,8 @@ echo "$GITHUB_WORKSPACE/.idea"
 #  exit
 # fi
 
+cp "$GITHUB_WORKSPACE/idea.properties" /opt/ide/bin/
+
 # There's no clean way to specify the scope and therefore we must use this
 # nasty workaround.
 # https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132670
@@ -24,7 +26,7 @@ if [ "$5" != "default" ]; then
   fi
   echo "-Didea.analyze.scope=$5" >> /opt/ide/bin/phpstorm64.vmoptions
   export STUDIO_VM_OPTIONS=/opt/ide/bin/phpstorm64.vmoptions
-  export PHPSTORM_VM_OPTIONS=/opt/ide/bin/phpstorm.vmoptions
+  export PHPSTORM_VM_OPTIONS=/opt/ide/bin/phpstorm64.vmoptions
 fi
 
 # Run the inspection with the parameters provided. This script is a real pain to
@@ -48,18 +50,18 @@ find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs xsltproc /files.xslt
 
 # Now we'll remove the $PROJECT_DIR$ references
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i 's|$PROJECT_DIR$||g'
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty sed -i 's|$PROJECT_DIR$||g'
 
 # Now we'll remove the file:// references
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i 's|file://||g'
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty sed -i 's|file://||g'
 
 # Remove all the references to GITHUB_WORKSPACE in all the XML files. The
 # inspection results have file paths in the format.
 # file://$PROJECT_DIR$/$GITHUB_WORKSPACE or file://$GITHUB_WORKSPACE
 # Notice that $GITHUB_WORKSPACE is a variable, while $PROJECT_DIR$ is not
 # shellcheck disable=SC2038
-find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs sed -i "s|$GITHUB_WORKSPACE/||g"
+find "$3" -name '*.xml' ! -name '.descriptions.xml' | xargs --no-run-if-empty sed -i "s|$GITHUB_WORKSPACE/||g"
 
 echo "Sanity check file paths"
 # shellcheck disable=SC2038
