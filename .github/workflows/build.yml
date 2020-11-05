@@ -38,5 +38,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            mridang/jbstorm:latest
-            docker.pkg.github.com/mridang/action-phpstorm/stormy:latest
+            docker.pkg.github.com/mridang/action-phpstorm/stormy:lates
